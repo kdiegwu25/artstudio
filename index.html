@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>
+        Spatial Design 
+    </title>
+
+<script
+    src="https://aframe.io/releases/1.8.0/aframe.min.js">
+</script>
+
+<!--(Door Animation Script)-->
+
+<script>
+  AFRAME.registerComponent('swing-door', {
+    schema: {
+      openAngle: { type: 'number', default: 90 }
+    },
+    init: function () {
+      this.isOpen = false;
+      this.el.addEventListener('click', () => {
+        this.isOpen = !this.isOpen;
+        const targetY = this.isOpen ? this.data.openAngle : 0;
+        this.el.setAttribute('animation', {
+          property: 'rotation',
+          to: `0 ${targetY} 0`,
+          dur: 600,
+          easing: 'easeInOutQuad'
+        });
+      });
+    }
+  });
+</script>
+
+</head>
+
+<body>
+
+<a-scene cursor="rayOrigin: mouse" raycaster="objects: .clickable">
+
+    <a-assets >
+    <a-asset-item id="sculptureModel" src="/Assets/Models /Scultpure platform .gltf"></a-asset-item>
+  </a-assets>
+
+<!-- Starting Camera Position (Entrance View) -->
+
+<a-entity id="rig" position="0 0 4.5">
+  <a-camera 
+    position="0 1.6 0">
+</a-camera>
+
+</a-entity>
+
+<a-plane
+    position = "0 0 -5"
+    rotation = "-90 0 0"
+    width = "22"
+    height = "20"
+    color = "#B07D4F">
+</a-plane>
+
+<!--(Outer Perimeter Wall Section)-->
+
+<!-- Back Wall -->
+    <a-plane
+        position="0 4 -15"
+        width="22" 
+        height="8"
+        color="#2E3436"
+        side="double">
+    </a-plane>  
+
+    <!-- Front Wall (Behind Starting Camera) -->
+    <a-plane
+        position="0 4 5"
+        width="22" 
+        height="8"
+        color="#2E3436"
+        side="double">
+    </a-plane>
+
+<!-- Left Outer Wall -->
+    <a-plane
+        position="-11 4 -5"
+        rotation="0 90 0"
+        width="20" 
+        height="8"
+        color="#F5E6C4"
+        side="double">
+    </a-plane>
+
+<!-- right Outer Wall -->
+
+<a-plane
+    position = "11 4 -5"
+    rotation = "0 -90 0"
+    width = "20" 
+    height = "8"
+    color = "#F5E6C4"
+    side="double">
+</a-plane>  
+
+<!--(ceiling section)-->
+
+<a-plane
+    position = "0 8 -5"
+    rotation = "90 0 0"
+    width = "22"
+    height = "20"
+    color = "#2E3436">
+</a-plane>
+ 
+
+<!-- Left Wall (left Center Partition Walls) -->
+
+<a-plane
+    position = "-6 4 -5"
+    width = "10" 
+    height = "8"
+    color = "#F5E6C4"
+    side="double">
+</a-plane>  
+
+<!-- Right Wall (Right Center Partition Walls) -->
+
+<a-plane
+    position = "6 4 -5"
+    width = "10" 
+    height = "8"
+    color = "#F5E6C4"
+    side="double">
+</a-plane>  
+
+<!-- LEFT HALLWAY WALLS (Front-Left Room Wall) -->
+
+<a-plane 
+    position="-1 4 2.5" 
+    rotation="0 90 0" 
+    width="5" 
+    height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="-1 6 -1" 
+    rotation="0 90 0" 
+    width="2" height="4" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="-1 4 -3.5" 
+    rotation="0 90 0" 
+    width="3" height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+ <!-- LEFT HALLWAY WALLS (Back-Left Room Wall) -->
+
+ <a-plane 
+    position="-1 4 -7" 
+    rotation="0 90 0" 
+    width="4" height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="-1 6 -10" 
+    rotation="0 90 0" 
+    width="2" height="4" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="-1 4 -13" 
+    rotation="0 90 0" 
+    width="4" 
+    height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<!-- RIGHT HALLWAY WALLS (Front-Right Room Wall) -->
+
+<a-plane 
+    position="1 4 2.5" 
+    rotation="0 -90 0" 
+    width="5" 
+    height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="1 6 -1" 
+    rotation="0 -90 0" 
+    width="2" 
+    height="4" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="1 4 -3.5" 
+    rotation="0 -90 0" 
+    width="3" 
+    height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<!-- Back-Right Room Wall (Front-Right Room Wall) -->
+
+<a-plane 
+    position="1 4 -7" 
+    rotation="0 -90 0" 
+    width="4" 
+    height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="1 6 -10" 
+    rotation="0 -90 0" 
+    width="2" 
+    height="4" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+<a-plane 
+    position="1 4 -13" 
+    rotation="0 -90 0" 
+    width="4" 
+    height="8" 
+    color="#F5E6C4" 
+    side="double">
+</a-plane>
+
+
+<!-- DOORS (Click to Open/Close) -->
+
+
+    <!-- Front-Left Room Door -->
+
+<a-entity position="-1 0 0" swing-door="openAngle: 90">
+
+<a-box 
+    class="clickable" 
+    position="0 2 -1" 
+    width="0.1" 
+    height="4" 
+    depth="2" 
+    color="#2C3E50">
+</a-box>
+
+</a-entity>
+
+<!-- Back-Left Room Door -->
+
+<a-entity position="-1 0 -9" swing-door="openAngle: 90">
+
+  <a-box 
+    class="clickable" 
+    position="0 2 -1" 
+    width="0.1" 
+    height="4" 
+    depth="2" 
+    color="#2C3E50">
+</a-box>
+
+</a-entity>
+
+<!-- Front-Right Room Door -->
+
+<a-entity position="1 0 0" swing-door="openAngle: -90">
+
+  <a-box class="clickable" 
+  position="0 2 -1" 
+  width="0.1" 
+  height="4" 
+  depth="2" 
+  color="#2C3E50">
+</a-box>
+
+</a-entity>
+
+<!-- Back-Right Room Door -->
+
+<a-entity position="1 0 -9" swing-door="openAngle: -90">
+
+  <a-box 
+    class="clickable" 
+    position="0 2 -1" 
+    width="0.1" 
+    height="4" 
+    depth="2" 
+    color="#2C3E50">
+</a-box>
+
+</a-entity>
+
+<!-- ===== SCULPTURE PLATFORMS ===== -->
+
+<!-- Front-Left Room (center -6, 0) -->
+<a-entity gltf-model="#sculptureModel" 
+position="-8 0 -3.33"
+rotation = "0 0 0"
+scale = "1 1 1"
+color = "grey">
+</a-entity>
+
+<a-entity gltf-model="#sculptureModel" 
+position="-8 0 -6.66"
+rotation = "0 0 0"
+scale = "1 1 1"
+color = "grey">
+</a-entity>
+
+<a-entity gltf-model="#sculptureModel" 
+position="-8 0 -9.99"
+rotation = "0 0 0"
+scale = "1 1 1"
+color = "grey">
+</a-entity>
+
+<!-- Front-right Room (center -6, 0) -->
+
+<a-entity gltf-model="#sculptureModel" 
+position="4 0 -3.33"
+rotation = "0 0 0"
+scale = "1 1 1"
+color = "grey">
+</a-entity>
+
+<a-entity gltf-model="#sculptureModel" 
+position="4 0 -6.66"
+rotation = "0 0 0"
+scale = "1 1 1"
+color = "grey">
+</a-entity>
+
+<a-entity gltf-model="#sculptureModel" 
+position="4 0 -9.99"
+rotation = "0 0 0"
+scale = "1 1 1"
+color = "grey">
+</a-entity>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</a-scene>
+</body>
+
+</html>
